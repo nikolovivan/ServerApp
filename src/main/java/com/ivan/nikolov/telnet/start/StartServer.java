@@ -3,7 +3,11 @@
  */
 package com.ivan.nikolov.telnet.start;
 
+import org.eclipse.jetty.server.Handler;
+import org.eclipse.jetty.server.NCSARequestLog;
 import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.handler.HandlerCollection;
+import org.eclipse.jetty.server.handler.RequestLogHandler;
 import org.eclipse.jetty.webapp.WebAppContext;
 
 /**
@@ -26,7 +30,18 @@ public class StartServer {
 		context.setContextPath("/");
 		context.setParentLoaderPriority(true);
 
-		server.setHandler(context);
+		RequestLogHandler requestLogHandler = new RequestLogHandler();
+		NCSARequestLog requestLog = new NCSARequestLog("./src/main/webapp/logs/jetty-yyyy_mm_dd.request.log");
+		requestLog.setRetainDays(90);
+		requestLog.setAppend(true);
+		requestLog.setExtended(true);
+		requestLog.setLogTimeZone("GMT");
+		requestLogHandler.setRequestLog(requestLog);
+
+		HandlerCollection handlers = new HandlerCollection();
+		handlers.setHandlers(new Handler[] { context, requestLogHandler });
+
+		server.setHandler(handlers);
 
 		server.start();
 		server.join();
