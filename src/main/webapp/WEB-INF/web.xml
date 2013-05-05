@@ -3,5 +3,28 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
+	<display-name>Telnet server</display-name>
+
+	<servlet>
+		<servlet-name>TelnetServlet</servlet-name>
+		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>javax.ws.rs.Application</param-name>
+			<param-value>com.ivan.nikolov.telnet.app.TelnetApp</param-value>
+		</init-param>
+		<init-param>
+			<param-name>com.sun.jersey.config.properry.packages</param-name>
+			<param-value>com.ivan.nikolov.telnet.rest</param-value>
+		</init-param>
+		<init-param>
+			<param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>TelnetServlet</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
 </web-app>
