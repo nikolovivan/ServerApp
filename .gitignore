@@ -1,7 +1,8 @@
 *.class
+.classpath
 target
 logs
-
+.settings/
 
 # Package Files #
 *.jar

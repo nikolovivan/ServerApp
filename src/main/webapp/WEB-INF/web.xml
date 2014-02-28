@@ -13,7 +13,7 @@
 			<param-value>com.ivan.nikolov.telnet.app.TelnetApp</param-value>
 		</init-param>
 		<init-param>
-			<param-name>com.sun.jersey.config.properry.packages</param-name>
+			<param-name>com.sun.jersey.config.property.packages</param-name>
 			<param-value>com.ivan.nikolov.telnet.rest</param-value>
 		</init-param>
 		<init-param>
